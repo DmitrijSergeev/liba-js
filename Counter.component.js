@@ -5,14 +5,17 @@ export function CounterComponent (_, {liba}){
         value: 1
     }
 
-    setInterval(()=>{
+    const interval = setInterval(()=>{
         localState.value++
         liba.refresh()
     }, 1000)
 
     return {
         element,
-        localState
+        localState,
+        cleanup: ()=>{
+            clearInterval(interval)
+        }
     }
 }
 
