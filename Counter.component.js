@@ -1,8 +1,21 @@
-export function CounterComponent (){
+export function CounterComponent (_, {liba}){
     const element = document.createElement('div')
-    return element
+
+    const localState = {
+        value: 1
+    }
+
+    setInterval(()=>{
+        localState.value++
+        liba.refresh()
+    }, 1000)
+
+    return {
+        element,
+        localState
+    }
 }
 
-CounterComponent.render = ({element})=>{
-    element.append(1)
+CounterComponent.render = ({element, localState})=>{
+    element.append(localState.value)
 }
